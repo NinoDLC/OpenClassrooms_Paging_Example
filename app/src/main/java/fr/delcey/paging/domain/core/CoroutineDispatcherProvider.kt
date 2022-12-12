@@ -1,4 +1,4 @@
-package fr.delcey.paging.domain
+package fr.delcey.paging.domain.core
 
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers

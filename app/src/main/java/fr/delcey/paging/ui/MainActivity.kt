@@ -2,10 +2,8 @@ package fr.delcey.paging.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 import dagger.hilt.android.AndroidEntryPoint
 import fr.delcey.paging.databinding.MainActivityBinding
-import fr.delcey.paging.ui.tracks.TracksFragment
 import fr.delcey.paging.ui.utils.viewBinding
 
 @AndroidEntryPoint
@@ -18,10 +16,6 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                replace(binding.mainFrameLayoutFragmentContainer.id, TracksFragment())
-            }
-        }
+        binding.mainViewPager.adapter = MainPagerAdapter(supportFragmentManager)
     }
 }

@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import fr.delcey.paging.databinding.TracksItemBinding
 import fr.delcey.paging.databinding.TracksItemLoadingBinding
+import fr.delcey.paging.ui.utils.setText
 
 class TracksAdapter : ListAdapter<TrackUiModel, RecyclerView.ViewHolder>(PokemonDiffUtil) {
 
@@ -37,7 +38,7 @@ class TracksAdapter : ListAdapter<TrackUiModel, RecyclerView.ViewHolder>(Pokemon
                 uiModel.onClicked.invoke()
             }
 
-            binding.trackItemTitle.text = uiModel.title
+            binding.trackItemTitle.setText(uiModel.title)
         }
     }
 

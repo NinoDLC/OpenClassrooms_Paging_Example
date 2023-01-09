@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import dagger.hilt.android.lifecycle.HiltViewModel
+import fr.delcey.paging.R
 import fr.delcey.paging.data.player.model.PlayerStateEntity
 import fr.delcey.paging.data.player.model.PlayerStateEntity.PlaybackState.PLAYING
 import fr.delcey.paging.data.track.model.TrackEntity
@@ -15,8 +16,8 @@ import fr.delcey.paging.domain.player.GetPlayerStateUseCase
 import fr.delcey.paging.domain.player.PlayUseCase
 import fr.delcey.paging.domain.player.StopUseCase
 import fr.delcey.paging.domain.tracks.GetPagedTracksUseCase
-import fr.delcey.paging.ui.tracks.TrackUiModel
 import fr.delcey.paging.ui.utils.EquatableCallback
+import fr.delcey.paging.ui.utils.NativeText
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.combine
 import javax.inject.Inject
@@ -57,11 +58,14 @@ class TracksViewModel @Inject constructor(
     ): List<TrackUiModel.Content> = tracks.map { track ->
         TrackUiModel.Content(
             id = track.id,
-            title = if (playerStateEntity?.playbackState == PLAYING && playerStateEntity.trackId == track.id) {
-                "Track #${track.id} is currently playing..."
-            } else {
-                "Track #${track.id}"
-            },
+            title = NativeText.Argument(
+                if (playerStateEntity?.playbackState == PLAYING && playerStateEntity.trackId == track.id) {
+                    R.string.playing_track
+                } else {
+                    R.string.track
+                },
+                track.id,
+            ),
             onClicked = EquatableCallback {
                 Toast.makeText(
                     application,

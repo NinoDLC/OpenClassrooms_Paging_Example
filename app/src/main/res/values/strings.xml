@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Paging</string>
+    <string name="playing_track">Track #%$1s is currently playing…</string>
+    <string name="track">Track #%$1s</string>
 </resources>

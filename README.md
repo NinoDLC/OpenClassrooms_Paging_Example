@@ -1,5 +1,5 @@
 # OpenClassrooms_Paging_Example
-Paging doesn't have to be hard! It's quite simple with Flows and a sensible split of responsabilities.
+Paging doesn't have to be hard! It's quite simple with Flows and a sensible split of responsibilities.
 
 # Branches
 `master` is the base, simple branch. You should start here for a quick view of a way to do pagination with Flows.  

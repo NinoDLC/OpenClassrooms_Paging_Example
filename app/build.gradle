@@ -3,6 +3,7 @@ plugins {
     id "org.jetbrains.kotlin.android"
     id "dagger.hilt.android.plugin"
     id "kotlin-kapt"
+    id "org.jetbrains.kotlinx.kover"
 }
 
 android {
@@ -41,7 +42,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -61,6 +62,19 @@ dependencies {
     implementation "androidx.room:room-ktx:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 
-    testImplementation 'junit:junit:4.13.2'
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "com.willowtreeapps.assertk:assertk-jvm:0.25"
+    testImplementation "io.mockk:mockk:1.13.3"
+    testImplementation("androidx.arch.core:core-testing:2.1.0") {
+        // Removes the Mockito dependency bundled with arch core (wtf android ??)
+        exclude group: "org.mockito", module: "mockito-core"
+    }
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4"
+    testImplementation "app.cash.turbine:turbine:0.8.0"
+}
 
+kover {
+    instrumentation {
+        excludeTasks.add "testReleaseUnitTest"
+    }
 }

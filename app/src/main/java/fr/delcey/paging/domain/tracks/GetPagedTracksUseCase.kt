@@ -1,8 +1,7 @@
 package fr.delcey.paging.domain.tracks
 
-import fr.delcey.paging.data.paging.PagingRepository
-import fr.delcey.paging.data.track.TrackRepository
 import fr.delcey.paging.data.track.model.TrackEntity
+import fr.delcey.paging.domain.paging.PagingRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.map

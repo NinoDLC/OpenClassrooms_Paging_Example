@@ -4,20 +4,18 @@ import fr.delcey.paging.data.player.model.PlayerStateEntity
 import fr.delcey.paging.data.player.model.PlayerStateEntity.PlaybackState
 import fr.delcey.paging.data.player.model.PlayerStateEntity.PlaybackState.PLAYING
 import fr.delcey.paging.data.player.model.PlayerStateEntity.PlaybackState.STOPPED
+import fr.delcey.paging.domain.player.PlayerRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class PlayerRepository @Inject constructor() {
+class PlayerRepositoryImpl @Inject constructor(): PlayerRepository {
 
     private val trackIdMutableStateFlow = MutableStateFlow<Long?>(null)
     private val playbackStateMutableStateFlow = MutableStateFlow(STOPPED)
 
-    fun getPlayerStateFlow(): Flow<PlayerStateEntity?> = combine(
+    override fun getPlayerStateFlow(): Flow<PlayerStateEntity?> = combine(
         trackIdMutableStateFlow,
         playbackStateMutableStateFlow
     ) { trackId: Long?, playbackState: PlaybackState ->
@@ -29,12 +27,12 @@ class PlayerRepository @Inject constructor() {
         }
     }
 
-    fun play(trackId: Long) {
+    override fun play(trackId: Long) {
         trackIdMutableStateFlow.value = trackId
         playbackStateMutableStateFlow.value = PLAYING
     }
 
-    fun stop() {
+    override fun stop() {
         playbackStateMutableStateFlow.value = STOPPED
     }
 }
